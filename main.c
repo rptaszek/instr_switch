@@ -1,27 +1,41 @@
 #include <stdio.h>
 
 int main() {
+    int a, b, wynik = 0;
+    char znak;
 
-    int ile_a=0, ile_b=0, ile_xy=0, nieznany=0;
-    char zn;
+    printf("Podaj pierwszą liczbę: ");
+    scanf(" %i", &a);
+    printf("Podaj operator: ");
+    scanf(" %c", &znak);
+    printf("Podaj drugą liczbę: ");
+    scanf(" %i", &b);
 
-    printf("Podaj znak: ");    scanf("%lf", zn);
-
-    zn = getchar();
-
-    switch (zn)
-    {
-        case 'a' : ++ile_a;
+    switch (znak) {
+        case '+':
+            wynik = a + b;
             break;
-        case 'b' : ++ile_b;
+        case '-':
+            wynik = a - b;
             break;
-        case 'x' :
-        case 'y' : ++ile_xy;
+        case '*':
+            wynik = a * b;
             break;
-        default: ++nieznany;
+        case '/':
+            if (a == 0 || b == 0) {
+                printf("Nie dzielimy przez zero!\n ");
+            } else {
+                wynik = a / b;
+    }
+            break;
+        default: printf("Zły operator\n");
     }
 
-    printf("a: %i b: %i xy: %i nn: %i\n", ile_a, ile_b, ile_xy, nieznany);
+    wynik
+    ?
+    printf("Wynik: %i\n", wynik)
+    :
+    printf("Nie wykonano");
 
     return 0;
 }
