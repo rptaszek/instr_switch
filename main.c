@@ -1,41 +1,81 @@
 #include <stdio.h>
 
-int main() {
-    int a, b, wynik = 0;
-    char znak;
+int mnoz(int a, int b) {
+    printf("Wynik mnozenia: %i\n", a * b);
+    return a * b;
+}
 
-    printf("Podaj pierwszą liczbę: ");
-    scanf(" %i", &a);
-    printf("Podaj operator: ");
-    scanf(" %c", &znak);
-    printf("Podaj drugą liczbę: ");
-    scanf(" %i", &b);
+int dodaj(int a, int b) {
+    printf("Wynik dodawania: %i\n", a + b);
+    return a + b;
+}
 
-    switch (znak) {
+int odejmij(int a, int b) {
+    printf("Wynik odejmowania: %i\n", a - b);
+    return a - b;
+}
+
+int dziel(int a, int b) {
+    if (b != 0) {
+        printf("Wynik dzielenia: %i i reszta: %i\n", a / b, a % b);
+        return a / b;
+    } else {
+        printf("Dzielenie przez 0!\n");
+        return 0;
+    }
+}
+
+int czy_powtorzyc(int *czy_dalej) {
+    printf("Czy dalej chcesz liczyc? (1 - tak / 0 - nie) ");
+    scanf("%d", czy_dalej);
+    return (*czy_dalej);
+}
+
+void wczytaj_wartosci(int *a, int *b, char *wybor) {
+    printf("Podaj wartosc argumentu a: ");
+    scanf("%i", a);
+    printf("Podaj dzialanie: ");
+    scanf(" %c", wybor);
+    printf("Podaj wartosc argumentu b: ");
+    scanf("%i", b);
+}
+
+int licz(int a, int b, char wybor) {
+    switch (wybor) {
         case '+':
-            wynik = a + b;
+            dodaj(a, b);
             break;
         case '-':
-            wynik = a - b;
+            odejmij(a, b);
             break;
         case '*':
-            wynik = a * b;
+            mnoz(a, b);
             break;
         case '/':
-            if (a == 0 || b == 0) {
-                printf("Nie dzielimy przez zero!\n ");
-            } else {
-                wynik = a / b;
-    }
+            dziel(a, b);
             break;
-        default: printf("Zły operator\n");
+        default:
+            puts("Nie znam dzialania!");
+            return 0;
     }
 
-    wynik
-    ?
-    printf("Wynik: %i\n", wynik)
-    :
-    printf("Nie wykonano");
+    return 1;
+}
+
+int main(void) {
+    int a, b;
+    char wybor;
+    int czy_dalej = 1;
+
+    printf("Program kalkulator.\n");
+
+    while (czy_dalej == 1) {
+        wczytaj_wartosci(&a, &b, &wybor);
+
+        licz(a, b, wybor);
+
+        czy_dalej = czy_powtorzyc(&czy_dalej);
+    }
 
     return 0;
 }
